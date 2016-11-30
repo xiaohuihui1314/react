@@ -1,13 +1,13 @@
 import {combineReducers} from 'redux';
 import {ADD,DEL,SET_VISIBILITY_FILTER,ActionData} from './Action';
-const { show_ALL } = ActionData
+const { show_ALL } = ActionData;
 
 function ActionData(state = show_ALL, action) {
     switch (action.type) {
         case SET_VISIBILITY_FILTER:
             return action.filter;
         default:
-            return state
+            return state;
     }
 }
 function todos(state=[],action) {
@@ -27,10 +27,10 @@ function todos(state=[],action) {
                         completed: !todo.completed
                     })
                 }
-                return todo
+                return todo;
             });
         default:
-            return state
+            return state;
     }
 }
 
@@ -39,5 +39,5 @@ const todoApp = combineReducers({
     todos
 })
 
-export default todoApp
+export default todoApp;
 

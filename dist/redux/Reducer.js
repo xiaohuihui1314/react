@@ -3,6 +3,7 @@ import {ADD, DEL, TODO, SET_VISIBILITY_FILTER, ActionData} from './Action';
 const {show_ALL} = ActionData;
 
 function actionData(state = show_ALL, action) {
+    console.log(state);
     switch (action.type) {
         case SET_VISIBILITY_FILTER:
             return action.filter;
@@ -12,14 +13,14 @@ function actionData(state = show_ALL, action) {
 }
 function todos(state = [], action) {
     console.log(state);
+    console.log(action);
     switch (action.type) {
         case ADD:
             return [
                 ...state,
                 {
                     text: action.text,
-                    state: true,
-                    completed: false
+                    state: true
                 }
             ];
         case DEL:

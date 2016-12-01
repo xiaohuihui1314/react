@@ -6,14 +6,12 @@ import {Provider} from 'react-redux';
 import Wrap from './Wrap';
 import Todo from '../redux/Reducer';
 
-
 let store =createStore(Todo);
 ReactDOM.render(
     <Provider store={store}>
         <Wrap/>
     </Provider>,
     document.getElementById("app"),function () {
-        var a =[1,2,3,1,4];
-       console.log(a);
+      console.log("渲染！");
     }
 );

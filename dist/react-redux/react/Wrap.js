@@ -1,20 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Add,Click,DATASTATE,DateArry} from  '../redux/Action';
+import {Add} from  '../redux/Action';
 import Box from './Box';
 import Form from './Form';
 
 class Wrap extends React.Component{
-
     render(){
-        console.log( this.props);
-
         return(
-            <div>
-                <Box/>
+            <div className="container">
+                <Box list={this.props.list}/>
                 <Form onAddClick={this.props.Add} />
             </div>
         )
+    }
+}
+function mapStateToProps(state) {
+    console.log(state);
+    return {
+       list:state
     }
 }
 function select(dispatch) {
@@ -25,4 +28,4 @@ function select(dispatch) {
     }
     
 }
-export default connect(select)(Wrap);
+export default connect(mapStateToProps,select)(Wrap);

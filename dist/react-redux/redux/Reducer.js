@@ -11,10 +11,19 @@ function dateArry(state = SHOW_ALL, action) {
             return state;
     }
 }
-function todos(state = [], action) {
+const list = {
+    datas: [],
+    length: 0
+};
+function todos(state =list, action) {
+    console.log(state);
+    console.log(action);
     switch (action.type) {
         case ADD:
-            return ;
+            return{
+                datas:[...state.datas,action],
+                length:state.length+1
+            };
         case CLICK:
             return;
         default:

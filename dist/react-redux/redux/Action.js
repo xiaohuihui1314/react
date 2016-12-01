@@ -9,8 +9,8 @@ export const DateArry={
 };
 export function Add(add) {
     return{
-        type:Add,
-        add
+        type:ADD,
+        text:add
     }
 }
 export function Click(click) {

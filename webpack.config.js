@@ -7,7 +7,8 @@ module.exports = {
      plugins: [commonsPlugin],*/
     //页面入口文件配置
     entry: {
-        index: './dist/index.js'
+        // index: './dist/index.js'
+        index: './dist/react-redux/react/App.js'
     },
     //入口文件输出配置
     output: {

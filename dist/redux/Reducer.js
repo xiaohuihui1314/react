@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import {ADD,DEL,TODO,SET_VISIBILITY_FILTER,ActionData} from './Action';
-const { show_ALL } = ActionData;
+import {ADD, DEL, TODO, SET_VISIBILITY_FILTER, ActionData} from './Action';
+const {show_ALL} = ActionData;
 
 function actionData(state = show_ALL, action) {
     switch (action.type) {
@@ -10,15 +10,15 @@ function actionData(state = show_ALL, action) {
             return state;
     }
 }
-function todos(state=[],action) {
-    console.log(action.type);
+function todos(state = [], action) {
+    console.log(state);
     switch (action.type) {
         case ADD:
             return [
                 ...state,
                 {
                     text: action.text,
-                    state:true,
+                    state: true,
                     completed: false
                 }
             ];
@@ -35,8 +35,8 @@ function todos(state=[],action) {
             return state;
     }
 }
-function todo(state=[],action) {
-    switch (action.type){
+function todo(state = [], action) {
+    switch (action.type) {
         case TODO:
             return [
                 ...state,

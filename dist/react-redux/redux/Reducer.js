@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {ADD, CLICK, DATASTATE, DateArry} from './Action';
+import {ADD, CLICK,CHECK, DATASTATE, DateArry} from './Action';
 
 const {SHOW_ALL} =DateArry;
 
@@ -12,18 +12,44 @@ function dateArry(state = SHOW_ALL, action) {
     }
 }
 const list = {
-    datas: [],
-    length: 0
+    datas: [
+        {
+            text:"hello",
+            checked:true
+        },
+        {
+            text:"hi",
+            checked:false
+        }
+    ],
+    checkedLength:1,
+    length: 2
 };
 function todos(state =list, action) {
     console.log(state);
-    console.log(action);
     switch (action.type) {
         case ADD:
             return{
                 datas:[...state.datas,action],
+                checkedLength:state.checkedLength,
                 length:state.length+1
             };
+        case CHECK:
+           return{
+               datas:[
+                   [Object.assign([],state.datas, state.datas[action.check.itemIndex].checked=action.check.checked)][0]
+               ][0],
+               checkedLength:(()=>{
+                   let num=0;
+                 state.datas.map(function (value, index) {
+                    if(value.checked==true){
+                         num++;
+                    }
+                });
+                   return num;
+               })(),
+               length:state.length
+           };
         case CLICK:
             return;
         default:

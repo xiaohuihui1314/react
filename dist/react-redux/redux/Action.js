@@ -1,5 +1,6 @@
 export const ADD="ADD";
 export const CLICK="CLICK";
+export const CHECK="CHECK";
 export const DATASTATE="DATASTATE";
 
 export const DateArry={
@@ -11,6 +12,12 @@ export function Add(add) {
     return{
         type:ADD,
         text:add
+    }
+}
+export function Check(check) {
+    return{
+        type:CHECK,
+        check
     }
 }
 export function Click(click) {

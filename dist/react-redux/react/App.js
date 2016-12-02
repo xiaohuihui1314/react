@@ -12,6 +12,6 @@ ReactDOM.render(
         <Wrap/>
     </Provider>,
     document.getElementById("app"),function () {
-      console.log("渲染！");
+     
     }
 );

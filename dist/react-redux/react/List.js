@@ -3,12 +3,12 @@ import Item from "./Item";
 
 class List extends React.Component {
     render() {
-        var itenArr=this.props.list.todos.datas.map(function (value, index) {
-            return <Item key={index}>{value.text}</Item>
-        });
+        var itenArr=this.props.list.todos.datas.map( (value, index) =>
+         <Item key={index} itemIndex={index} checkChange={this.props.checkChange} checked={value.checked}>{value.text}</Item>
+      );
         return (
             <div>
-                <ul className="list-group" >
+                <ul className="list-group">
                     {itenArr}
                 </ul>
             </div>

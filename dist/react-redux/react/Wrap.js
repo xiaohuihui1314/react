@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Add} from  '../redux/Action';
+import {Add,Check} from  '../redux/Action';
 import Box from './Box';
 import Form from './Form';
 
 class Wrap extends React.Component{
     render(){
         return(
-            <div className="container">
-                <Box list={this.props.list}/>
+            <div>
+                <Box list={this.props.list} checkChange={this.props.checkChange}/>
                 <Form onAddClick={this.props.Add} />
             </div>
         )
@@ -24,6 +24,9 @@ function select(dispatch) {
     return{
         Add:(e)=>{
             dispatch(Add(e))
+        },
+        checkChange:(e)=>{
+            dispatch(Check(e))
         }
     }
     

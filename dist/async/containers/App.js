@@ -1,46 +1,49 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../actions'
-import Picker from '../components/Picker'
-import Posts from '../components/Posts'
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../actions';
+import Picker from '../components/Picker';
+import Posts from '../components/Posts';
 
 class App extends Component {
   constructor(props) {
-    super(props)
-    this.handleChange = this.handleChange.bind(this)
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
     this.handleRefreshClick = this.handleRefreshClick.bind(this)
   }
 
   //初始化渲染后触发
   componentDidMount() {
     console.log('执行componentDidMount');
-    const { dispatch, selectedReddit } = this.props
-    dispatch(fetchPostsIfNeeded(selectedReddit))
+    const { dispatch, selectedReddit } = this.props;
+    // dispatch(fetchPostsIfNeeded(selectedReddit));
   }
 
   //每次接受新的props触发
   componentWillReceiveProps(nextProps) {
     console.log('执行componentWillReceiveProps',nextProps);
     if (nextProps.selectedReddit !== this.props.selectedReddit) {
-      const { dispatch, selectedReddit } = nextProps
-      dispatch(fetchPostsIfNeeded(selectedReddit))
+      const { dispatch, selectedReddit } = nextProps;
+      dispatch(fetchPostsIfNeeded(selectedReddit));
     }
   }
 
+  // 下拉框下拉事件
   handleChange(nextReddit) {
-    this.props.dispatch(selectReddit(nextReddit))
+    this.props.dispatch(selectReddit(nextReddit));
   }
 
-  handleRefreshClick(e) {
-    e.preventDefault()
 
-    const { dispatch, selectedReddit } = this.props
-    dispatch(invalidateReddit(selectedReddit))
-    dispatch(fetchPostsIfNeeded(selectedReddit))
+  // 手动刷新事件
+  handleRefreshClick(e) {
+    e.preventDefault();
+
+    const { dispatch, selectedReddit } = this.props;
+    dispatch(invalidateReddit(selectedReddit));
+    dispatch(fetchPostsIfNeeded(selectedReddit));
   }
 
   render() {
-    const { selectedReddit, posts, isFetching, lastUpdated } = this.props
+    const { selectedReddit, posts, isFetching, lastUpdated } = this.props;
     return (
       <div>
         <Picker value={selectedReddit}
@@ -85,7 +88,7 @@ App.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { selectedReddit, postsByReddit } = state
+  const { selectedReddit, postsByReddit } = state;
   const {
     isFetching,
     lastUpdated,

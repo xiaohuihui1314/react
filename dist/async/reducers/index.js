@@ -1,16 +1,16 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import {
   SELECT_REDDIT, INVALIDATE_REDDIT,
   REQUEST_POSTS, RECEIVE_POSTS
-} from '../actions'
+} from '../actions';
 
-//选择新闻后，将state.selectedReddit设为所选选项
+//select 下拉框选择新闻后，将state.selectedReddit设为所选选项
 function selectedReddit(state = 'reactjs', action) {
   switch (action.type) {
     case SELECT_REDDIT:
-      return action.reddit
+      return action.reddit;
     default:
-      return state
+      return state;
   }
 }
 
@@ -26,19 +26,19 @@ function posts(state = {
     case INVALIDATE_REDDIT:
       return Object.assign({}, state, {
         didInvalidate: true
-      })
+      });
     case REQUEST_POSTS:
       return Object.assign({}, state, {
         isFetching: true,
         didInvalidate: false
-      })
+      });
     case RECEIVE_POSTS:
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
         items: action.posts,
         lastUpdated: action.receivedAt
-      })
+      });
     default:
       return state
   }
@@ -51,7 +51,7 @@ function postsByReddit(state = { }, action) {
     case REQUEST_POSTS:
       return Object.assign({}, state, {
         [action.reddit]: posts(state[action.reddit], action)
-      })
+      });
     default:
       return state
   }
@@ -60,6 +60,6 @@ function postsByReddit(state = { }, action) {
 const rootReducer = combineReducers({
   postsByReddit,
   selectedReddit
-})
+});
 
 export default rootReducer

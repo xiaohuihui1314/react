@@ -1,9 +1,12 @@
-import fetch from 'isomorphic-fetch'
+//fetch请求
+import fetch from 'isomorphic-fetch';
 
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const SELECT_REDDIT = 'SELECT_REDDIT'
-export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
+export const REQUEST_POSTS = 'REQUEST_POSTS';//首次开始执行获取新闻列表
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';//成功获取新闻列表
+export const SELECT_REDDIT = 'SELECT_REDDIT';//select下拉选择
+export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT';//手动刷新获取新闻列表
+
+//select选择
 //选择新闻类型action
 export function selectReddit(reddit) {
   return {
@@ -11,6 +14,8 @@ export function selectReddit(reddit) {
     reddit
   }
 }
+
+//
 //废弃新闻类型action
 export function invalidateReddit(reddit) {
   return {
@@ -38,7 +43,7 @@ function receivePosts(reddit, json) {
 //获取文章，先触发requestPosts开始获取action，完成后触发receivePosts获取成功的action
 function fetchPosts(reddit) {
   return dispatch => {
-    dispatch(requestPosts(reddit))
+    dispatch(requestPosts(reddit));
     return fetch(`https://www.reddit.com/r/${reddit}.json`)
       .then(response => response.json())
       .then(json => dispatch(receivePosts(reddit, json)))
@@ -47,7 +52,7 @@ function fetchPosts(reddit) {
 
 //是否需要获取文章
 function shouldFetchPosts(state, reddit) {
-  const posts = state.postsByReddit[reddit]
+  const posts = state.postsByReddit[reddit];
   if (!posts) {
     return true
   }

@@ -1,7 +1,55 @@
 import {combineReducers} from 'redux';
-import {ADD, CLICK,CHECK, DATASTATE, DateArry} from './Action';
+import {
+    ADD,
+    CLICK,
+    CHECK,
+    DATASTATE,
+    DateArry,
+    ClICKREQUEST,
+    STARTREQUEST,
+    SUCCESSREQUEST
+} from './Action';
 
 const {SHOW_ALL} =DateArry;
+
+function clickRequest(state = 'reactjs',action) {
+    switch (action.type){
+        case ClICKREQUEST:
+            return action.name;
+        default:
+            return state;
+    }
+}
+function requestFetch(state= {
+    //是否正在获取最新
+    isFetching: false,
+    //内容
+    items: []
+}, action) {
+    switch (action.type){
+        case STARTREQUEST:
+            return Object.assign({},state,{
+                isFetching:true
+            });
+        case SUCCESSREQUEST:
+            return Object.assign({}, state, {
+                isFetching: false,
+                items: action.posts
+            });
+    }
+}
+
+function postBy(state = {}, action) {
+    switch (action.type){
+        case STARTREQUEST:
+        case SUCCESSREQUEST:
+            return Object.assign({},state,{
+                action:requestFetch(state={},action)
+            });
+        default:
+            return state;
+    }
+}
 
 function dateArry(state = SHOW_ALL, action) {
     switch (action.type) {
@@ -12,16 +60,7 @@ function dateArry(state = SHOW_ALL, action) {
     }
 }
 const list = {
-    datas: [
-        {
-            text:"hello",
-            checked:true
-        },
-        {
-            text:"hi",
-            checked:false
-        }
-    ],
+    datas: [],
     checkedLength:1,
     length: 2
 };
@@ -56,5 +95,5 @@ function todos(state =list, action) {
             return state;
     }
 }
-const Todo = combineReducers({dateArry, todos});
+const Todo = combineReducers({dateArry, todos,clickRequest,postBy});
 export default Todo;

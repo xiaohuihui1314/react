@@ -11,5 +11,9 @@ render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),function () {
+        setInterval(function () {
+            document.getElementsByClassName("gorgeous")[0].style.transform="scaleX(."+Math.ceil(Math.random()*10)+")"
+        },120);
+    }
 );

@@ -13,14 +13,18 @@ class App extends Component {
 
   //初始化渲染后触发
   componentDidMount() {
-    console.log('执行componentDidMount');
+    // console.log('执行componentDidMount');
+    console.log('1111111111111111');
     const { dispatch, selectedReddit } = this.props;
-    // dispatch(fetchPostsIfNeeded(selectedReddit));
+    console.log(this.props);
+    console.log(selectedReddit);
+    dispatch(fetchPostsIfNeeded(selectedReddit));
   }
 
   //每次接受新的props触发
   componentWillReceiveProps(nextProps) {
-    console.log('执行componentWillReceiveProps',nextProps);
+    // console.log('执行componentWillReceiveProps',nextProps);
+    console.log('2222222222222222222');
     if (nextProps.selectedReddit !== this.props.selectedReddit) {
       const { dispatch, selectedReddit } = nextProps;
       dispatch(fetchPostsIfNeeded(selectedReddit));
@@ -89,15 +93,7 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   const { selectedReddit, postsByReddit } = state;
-  const {
-    isFetching,
-    lastUpdated,
-    items: posts
-  } = postsByReddit[selectedReddit] || {
-    isFetching: true,
-    items: []
-  }
-
+  const {isFetching, lastUpdated, items: posts} = postsByReddit[selectedReddit] || {isFetching: true, items: []}
   return {
     selectedReddit,
     posts,

@@ -1,17 +1,16 @@
 import '../../../css/bootstrap.css'
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import Wrap from './Wrap';
-import Todo from '../redux/Reducer';
+import configureStore from '../redux/Store';
 
-let store =createStore(Todo);
+let store =configureStore();
 ReactDOM.render(
     <Provider store={store}>
         <Wrap/>
     </Provider>,
     document.getElementById("app"),function () {
-     
+        console.log("渲染！")
     }
 );

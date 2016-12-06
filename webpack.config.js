@@ -1,7 +1,6 @@
 /**
  * Created by Administrator on 2016/10/26.
  */
-
 module.exports = {
     /*    //插件项
      plugins: [commonsPlugin],*/

@@ -70,7 +70,7 @@ const list = {
         }
     ],
     checkedLength: 1,
-    length: 1
+    length: 2
 };
 function todos(state = list, action) {
     switch (action.type) {

@@ -22,19 +22,22 @@ export function Clickrequest(data) {
     }
 }
 // 请求成功
- function Successrequest(data) {
+ function Successrequest(name,json) {
     return{
         type:SUCCESSREQUEST,
-        data
+        name:name,
+        posts:json.data.children.map(child => child.data),
     }
 }
+
 // 远程获取数据
 function fetchRequest(name) {
-  return dispatch=>
-  dispatch(Startrequest(name));
-    return fetch(`https://www.reddit.com/r/${name}.json`)
-        .then(request=>request.json)
-        .then(json=>dispatch(Successrequest(name,json)))
+  return dispatch=> {
+      dispatch(Startrequest(name));
+      return fetch(`https://www.reddit.com/r/${name}.json`)
+          .then(response => response.json())
+          .then(json => dispatch(Successrequest(name, json)));
+  }
 }
 
 // 触发获取数据

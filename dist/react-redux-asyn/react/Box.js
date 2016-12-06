@@ -6,7 +6,7 @@ class Box extends React.Component {
             <div>
                 <section>
                     <List list={this.props.list} checkChange={this.props.checkChange}/>
-                    <p>item lengths：{this.props.list.todos.length} &nbsp;checked lengths：{this.props.list.todos.checkedLength}</p>
+                    <p>item lengths：{this.props.list.length} &nbsp;checked lengths：{this.props.list.checkedLength}</p>
                 </section>
             </div>
         )

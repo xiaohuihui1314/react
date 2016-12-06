@@ -10,7 +10,9 @@ ReactDOM.render(
     <Provider store={store}>
         <Wrap/>
     </Provider>,
-    document.getElementById("app"),function () {
-        console.log("渲染！")
+    document.getElementById("app"),()=>{
+        setInterval(function () {
+            document.getElementsByClassName("gorgeous")[0].style.transform="scaleX(."+Math.ceil(Math.random()*10)+")"
+        },120);
     }
 );

@@ -6,6 +6,7 @@ import Posts from '../components/Posts';
 
 class App extends Component {
   constructor(props) {
+    console.log(props)
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleRefreshClick = this.handleRefreshClick.bind(this)
@@ -92,7 +93,9 @@ App.propTypes = {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   const { selectedReddit, postsByReddit } = state;
+  console.log(state);
   const {isFetching, lastUpdated, items: posts} = postsByReddit[selectedReddit] || {isFetching: true, items: []}
   return {
     selectedReddit,

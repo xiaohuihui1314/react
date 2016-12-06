@@ -6,7 +6,7 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';//成功获取新闻列表
 export const SELECT_REDDIT = 'SELECT_REDDIT';//select下拉选择
 export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT';//手动刷新获取新闻列表
 
-//select选择
+//select选择selectedReddit
 //选择新闻类型action
 export function selectReddit(reddit) {
   return {

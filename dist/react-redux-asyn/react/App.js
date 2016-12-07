@@ -13,6 +13,6 @@ ReactDOM.render(
     document.getElementById("app"),()=>{
         setInterval(function () {
             document.getElementsByClassName("gorgeous")[0].style.transform="scaleX(."+Math.ceil(Math.random()*10)+")"
-        },120);
+        },90);
     }
 );
